@@ -91,5 +91,58 @@
 		 	 	and (d.defect_code like CONCAT('%',#{defectKey},'%')  or d.defect_name like CONCAT('%',#{defectKey},'%') )
 		 	</if>
 	</select> 
+	
+	<!-- getdefectDetails -->
+	
+	
+	<select id="getdefectDetails"  resultType="com.bhdx.wy.domain.dto.DefectDTO">
+		SELECT 
+			d.defect_code defect_code,
+			d.defect_name defect_name,
+			d.defect_img defect_img,
+			d.defect_remarks defect_remarks,
+			u1.username create_by,
+			u2.username assigned_user,
+			c1.code_name defect_status,
+			c2.code_name defect_type,
+			c3.code_name defect_severity,
+			c4.code_name defect_priority,
+			c5.code_name defect_probability,
+			c6.code_name processing_status,
+			c7.code_name defect_solution
+		FROM defect d,user u1,user u2,code c1,code c2,code c3,code c4,code c5,code c6,code c7
+		WHERE   d.create_by = u1.user_id
+				and d.assigned_user = u2.user_id
+				and d.defect_status = c1.code_number
+				and d.defect_type = c2.code_number
+				and d.defect_severity = c3.code_number
+				and d.defect_priority = c4.code_number
+				and d.defect_probability  = c5.code_number
+				and d.processing_status = c6.code_number
+				and d.defect_solution = c7.code_number
+				and d.defect_code =  #{defectCode}
+	</select> 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 </mapper>

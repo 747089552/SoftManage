@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bhdx.wy.domain.dto.DefectDTO;
+import com.bhdx.wy.domain.json.BaseJSON;
 import com.bhdx.wy.domain.json.PageJSON;
 import com.bhdx.wy.mapper.DefectMapper;
 import com.bhdx.wy.service.DefectService;
@@ -47,30 +48,7 @@ public class DefectServiceImpl implements DefectService{
 		}
 	}
 	/**
-	 * //获取用户列表
-	@Override
-	public PageJSON getUserList(int pageNum, int pageSize, String dealerCode, String userGrade, String userKey) {
-		PageJSON pageJSON = new PageJSON();
-		//		try {
-		//			userKey = URLDecoder.decode(userKey, "utf-8");
-		//		} catch (UnsupportedEncodingException e) {
-		//			e.printStackTrace();
-		//		}
-		try {
-			userKey = URLDecoder.decode(userKey, "utf-8");
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		}
-		Page<Object> pages = PageHelper.startPage(pageNum, pageSize);
-		List<UserDTO> list = userMapper.getUserList(dealerCode, userGrade, userKey);
-		pageJSON.setTotal(pages.getTotal());
-		pageJSON.setPages(pages.getPages());
-		pageJSON.setPageNum(pages.getPageNum());
-		pageJSON.setPageSize(pages.getPageSize());
-		pageJSON.setResult(list);
-		return pageJSON;
-	}
+	 * 获取缺陷列表
 	 */
 	@Override
 	public PageJSON selectDefectList(String defectKeyOne, Integer defectStatus, Integer defectSeverity,
@@ -94,5 +72,17 @@ public class DefectServiceImpl implements DefectService{
 		pageJSON.setResult(list);
 		return pageJSON;
 	}
+	
+	/**
+	 * 获取缺陷详情
+	 */
+	@Override
+	public BaseJSON selectDefectDetail(Integer defectCode) {
+		BaseJSON baseJSON = new BaseJSON();
+		DefectDTO defectDTO = defectMapper.getdefectDetails(defectCode);
+		baseJSON.setResult(defectDTO);
+		return baseJSON;
+	}
+	
 	
 }

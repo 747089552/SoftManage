@@ -56,6 +56,13 @@ public interface DefectMapper {
 			@Param("defectPriority")Integer defectPriority,
 			@Param("processingStatus")Integer processingStatus,
 			@Param("defectSolution")Integer defectSolution);
+	
+	/**
+	 * 获取缺陷详情通过编码
+	 * @param defectCode
+	 * @return
+	 */
+	public DefectDTO getdefectDetails(@Param("defectCode")Integer defectCode);
 
 	
 	

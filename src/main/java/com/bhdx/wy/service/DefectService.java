@@ -1,5 +1,6 @@
 package com.bhdx.wy.service;
 
+import com.bhdx.wy.domain.json.BaseJSON;
 import com.bhdx.wy.domain.json.PageJSON;
 
 public interface DefectService {
@@ -42,5 +43,12 @@ public interface DefectService {
 	 */
 	public PageJSON selectDefectList(String defectKeyOne, Integer defectStatus, Integer defectSeverity,
 			Integer defectPriority, Integer processingStatus, Integer defectSolution, int pageNum, int pageSize);
+	
+	/**
+	    *   查询defect详情
+	 * @param defectCode
+	 * @return
+	 */
+	public BaseJSON selectDefectDetail(Integer defectCode);
 
 }

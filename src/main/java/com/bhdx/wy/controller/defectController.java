@@ -83,13 +83,25 @@ public class defectController {
 		@ApiImplicitParam(paramType = "query", name = "pageNum", dataType = "int", required = true, value = "起始位置", defaultValue = "1"),
 		@ApiImplicitParam(paramType = "query", name = "pageSize", dataType = "int", required = true, value = "每页显示数据量", defaultValue = "10"),
 	})
-	@RequestMapping(value = "/selectBug", method = RequestMethod.GET)
-	public PageJSON selectBug(String defectKey ,Integer defectStatus,
+	@RequestMapping(value = "/selectDefectList", method = RequestMethod.GET)
+	public PageJSON selectDefectList(String defectKey ,Integer defectStatus,
 								 Integer defectSeverity,Integer defectPriority,Integer processingStatus,Integer defectSolution,int pageNum,int pageSize){
 		
 		return defectService.selectDefectList(defectKey, defectStatus,
 				  						defectSeverity, defectPriority, processingStatus, defectSolution,pageNum,pageSize);
 	}
+	
+	@CrossOrigin
+	@ApiOperation("查询bug详情")
+	@ApiImplicitParams({
+		@ApiImplicitParam(paramType = "query", name = "defectCode", dataType = "Integer", required = false, value = "缺陷编码", defaultValue = ""),
+	})
+	@RequestMapping(value = "/selectDefectDetail", method = RequestMethod.GET)
+	public BaseJSON selectDefectDetail(Integer defectCode){
+		
+		return defectService.selectDefectDetail(defectCode);
+	}
+
 }
 
 
