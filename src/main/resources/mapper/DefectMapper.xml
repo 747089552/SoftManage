@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bhdx.wy.mapper.DefectMapper">
+
+	<insert id="addDefect" >
+		insert into bug
+		(defect_code,
+		defect_name,
+		create_by,
+		assigned_user,
+		project_id,
+		defect_status,
+		defect_type,
+		defect_severity,
+		defect_priority,
+		defect_probability,
+		processing_status,
+		defect_solution,
+		defect_remarks,
+		defect_img,
+		create_time) 
+		VALUES(#{defectCode},
+			   #{defectName},
+			   #{createBy},
+			   #{assignedUser},
+			   #{projectId},
+			   #{defectStatus},
+			   #{defectType},
+			   #{defectSeverity},
+			   #{defectPriority},
+			   #{defectProbability},
+			   #{processingStatus},
+			   #{defectSolution},
+			   #{defectRemarks},
+			   #{defectImg},
+			   #{createTime});
+	</insert>
+	
+	<!--查询项目  -->
+	<select id="selectDefectCode"  resultType="com.bhdx.wy.domain.po.BugPO">
+			select defect_code from bug where defect_code = #{defectCode};
+	</select> 
+	
+
+</mapper>
