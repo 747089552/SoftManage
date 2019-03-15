@@ -1,5 +1,7 @@
 package com.bhdx.wy.service;
 
+import com.bhdx.wy.domain.json.PageJSON;
+
 public interface DefectService {
 
 	/**
@@ -24,5 +26,21 @@ public interface DefectService {
 	public String addDefect(Integer defectCode, String defectName, Integer createBy, Integer assignedUser,
 			Integer projectId, Integer defectType, Integer defectSeverity, Integer defectPriority,
 			Integer defectProbability, Integer defectSolution, String defectRemarks, String defectImg);
+
+	/**
+	 * 	查询bug列表
+	 * @param defectCode
+	 * @param defectName
+	 * @param defectStatus
+	 * @param defectSeverity
+	 * @param defectPriority
+	 * @param processingStatus
+	 * @param defectSolution
+	 * @param pageSize 
+	 * @param pageNum 
+	 * @return
+	 */
+	public PageJSON selectDefectList(String defectKeyOne, Integer defectStatus, Integer defectSeverity,
+			Integer defectPriority, Integer processingStatus, Integer defectSolution, int pageNum, int pageSize);
 
 }

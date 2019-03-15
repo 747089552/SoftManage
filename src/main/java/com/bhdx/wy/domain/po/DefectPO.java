@@ -2,7 +2,7 @@ package com.bhdx.wy.domain.po;
 
 import java.util.Date;
 
-public class BugPO {
+public class DefectPO {
 	private Integer defectId;
 	private Integer defectCode;
 	private Integer defectName;

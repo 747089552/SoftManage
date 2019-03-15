@@ -8,7 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.bhdx.wy.domain.po.BugPO;
+import com.bhdx.wy.domain.json.BaseJSON;
+import com.bhdx.wy.domain.json.PageJSON;
 import com.bhdx.wy.service.DefectService;
 import com.bhdx.wy.service.UserService;
 
@@ -70,18 +71,25 @@ public class defectController {
 	
 	
 
-	/*@CrossOrigin
+	@CrossOrigin
 	@ApiOperation("查询bug列表")
 	@ApiImplicitParams({
-		@ApiImplicitParam(paramType = "query", name = "defectCode", dataType = "Integer", required = true, value = "缺陷编码", defaultValue = "0001"),
-		@ApiImplicitParam(paramType = "query", name = "defectCode", dataType = "Integer", required = true, value = "缺陷名称", defaultValue = "0001"), 
-		@ApiImplicitParam(paramType = "query", name = "defectCode", dataType = "Integer", required = true, value = "创建时间", defaultValue = "0001"),                            
+		@ApiImplicitParam(paramType = "query", name = "defectKey", dataType = "Integer", required = false, value = "缺陷编码和名称模糊", defaultValue = ""),
+		@ApiImplicitParam(paramType = "query", name = "defectStatus", dataType = "Integer", required = false, value = "缺陷状态", defaultValue = ""), 
+		@ApiImplicitParam(paramType = "query", name = "defectSeverity", dataType = "Integer", required = false, value = "严重程度", defaultValue = ""), 
+		@ApiImplicitParam(paramType = "query", name = "defectPriority", dataType = "Integer", required = false, value = "优先级", defaultValue = ""),  
+		@ApiImplicitParam(paramType = "query", name = "processingStatus", dataType = "Integer", required = false, value = "处理状态", defaultValue = ""), 
+		@ApiImplicitParam(paramType = "query", name = "defectSolution", dataType = "Integer", required = false, value = "解决方案", defaultValue = ""),    
+		@ApiImplicitParam(paramType = "query", name = "pageNum", dataType = "int", required = true, value = "起始位置", defaultValue = "1"),
+		@ApiImplicitParam(paramType = "query", name = "pageSize", dataType = "int", required = true, value = "每页显示数据量", defaultValue = "10"),
 	})
 	@RequestMapping(value = "/selectBug", method = RequestMethod.GET)
-	public List<BugPO> selectBug(){
+	public PageJSON selectBug(String defectKey ,Integer defectStatus,
+								 Integer defectSeverity,Integer defectPriority,Integer processingStatus,Integer defectSolution,int pageNum,int pageSize){
 		
-		return null;
-	}*/
+		return defectService.selectDefectList(defectKey, defectStatus,
+				  						defectSeverity, defectPriority, processingStatus, defectSolution,pageNum,pageSize);
+	}
 }
 
 

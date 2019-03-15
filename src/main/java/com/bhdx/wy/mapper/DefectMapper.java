@@ -6,7 +6,8 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
-import com.bhdx.wy.domain.po.BugPO;
+import com.bhdx.wy.domain.dto.DefectDTO;
+import com.bhdx.wy.domain.po.DefectPO;
 
 
 @Mapper
@@ -35,6 +36,40 @@ public interface DefectMapper {
 	 * @return 
 	 * @return
 	 */
-	public List<BugPO> selectDefectCode(@Param("defectCode")int defectCode);
+	public List<DefectPO> selectDefectCode(@Param("defectCode")int defectCode);
+	
+	/**
+	 * 查询缺陷列表
+	 * @param defectCode
+	 * @param defectName
+	 * @param defectStatus
+	 * @param defectSeverity
+	 * @param defectPriority
+	 * @param processingStatus
+	 * @param defectSolution
+	 * @return
+	 */
+	public List<DefectDTO> selectDefectList(
+			@Param("defectKey")String defectKey,
+			@Param("defectStatus")Integer defectStatus,
+			@Param("defectSeverity")Integer defectSeverity,
+			@Param("defectPriority")Integer defectPriority,
+			@Param("processingStatus")Integer processingStatus,
+			@Param("defectSolution")Integer defectSolution);
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

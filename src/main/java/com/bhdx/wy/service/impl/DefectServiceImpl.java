@@ -1,12 +1,18 @@
 package com.bhdx.wy.service.impl;
 
+import java.net.URLDecoder;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.bhdx.wy.domain.dto.DefectDTO;
+import com.bhdx.wy.domain.json.PageJSON;
 import com.bhdx.wy.mapper.DefectMapper;
 import com.bhdx.wy.service.DefectService;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 
 @Service
 public class DefectServiceImpl implements DefectService{
@@ -40,8 +46,53 @@ public class DefectServiceImpl implements DefectService{
 			}
 		}
 	}
-
-	
-	
+	/**
+	 * //获取用户列表
+	@Override
+	public PageJSON getUserList(int pageNum, int pageSize, String dealerCode, String userGrade, String userKey) {
+		PageJSON pageJSON = new PageJSON();
+		//		try {
+		//			userKey = URLDecoder.decode(userKey, "utf-8");
+		//		} catch (UnsupportedEncodingException e) {
+		//			e.printStackTrace();
+		//		}
+		try {
+			userKey = URLDecoder.decode(userKey, "utf-8");
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		Page<Object> pages = PageHelper.startPage(pageNum, pageSize);
+		List<UserDTO> list = userMapper.getUserList(dealerCode, userGrade, userKey);
+		pageJSON.setTotal(pages.getTotal());
+		pageJSON.setPages(pages.getPages());
+		pageJSON.setPageNum(pages.getPageNum());
+		pageJSON.setPageSize(pages.getPageSize());
+		pageJSON.setResult(list);
+		return pageJSON;
+	}
+	 */
+	@Override
+	public PageJSON selectDefectList(String defectKeyOne, Integer defectStatus, Integer defectSeverity,
+			Integer defectPriority, Integer processingStatus, Integer defectSolution, int pageNum, int pageSize) {
+		PageJSON pageJSON = new PageJSON();
+		String defectKey = "";
+		try {
+			defectKeyOne = defectKeyOne.replaceAll("%(?![0-9a-fA-F]{2})", "%25");  
+			defectKey = URLDecoder.decode(defectKeyOne, "UTF-8"); 
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		Page<Object> pages = PageHelper.startPage(pageNum, pageSize);
+		List<DefectDTO> list = defectMapper.selectDefectList(defectKey,defectStatus,defectSeverity,
+															 defectPriority,processingStatus,defectSolution);
+		pageJSON.setTotal(pages.getTotal());
+		pageJSON.setPages(pages.getPages());
+		pageJSON.setPageNum(pages.getPageNum());
+		pageJSON.setPageSize(pages.getPageSize());
+		pageJSON.setResult(list);
+		return pageJSON;
+	}
 	
 }
