@@ -124,6 +124,23 @@
 	</select> 
 	
 	
+		
+	<!-- 修改缺陷  -->
+	<update id="updateDefectDetail">
+	UPDATE project set 
+	<if test="projectName != null and projectName != ''">
+		 project_name =  #{projectName},
+	</if>
+	<if test="remarks != null and remarks != '' ">
+		 	remarks= #{remarks},
+	</if>
+	<if test="projectStatus != null and projectStatus != '' ">
+		 		project_status= #{projectStatus},
+	</if>
+		 update_time= #{updateTime} 
+	where project_code = #{projectCode} 
+	</update>
+	
 	
 	
 	

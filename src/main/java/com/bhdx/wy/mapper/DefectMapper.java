@@ -63,20 +63,35 @@ public interface DefectMapper {
 	 * @return
 	 */
 	public DefectDTO getdefectDetails(@Param("defectCode")Integer defectCode);
+	
+	
+	/**
+	 * 修改缺陷信息
+	 * @param defectCode
+	 * @param defectName
+	 * @param defectStatus
+	 * @param defectSeverity
+	 * @param defectPriority
+	 * @param processingStatus
+	 * @param defectSolution
+	 * @param defectRemarks
+	 * @param defectImg
+	 * @param updateBy
+	 * @param updateTime
+	 * @return
+	 */
+	public int updateDefectDetail(
+			@Param("defectCode")Integer defectCode,
+			@Param("defectName")String defectName,
+			@Param("defectStatus")Integer defectStatus,
+			@Param("defectSeverity")Integer defectSeverity,
+			@Param("defectPriority")Integer defectPriority,
+			@Param("processingStatus")Integer processingStatus,
+			@Param("defectSolution")Integer defectSolution,
+			@Param("defectRemarks")String defectRemarks,
+			@Param("defectImg")String defectImg, 
+			@Param("updateBy")Integer updateBy,
+			@Param("updateTime")Date updateTime);
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 }

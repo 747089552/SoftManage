@@ -50,5 +50,24 @@ public interface DefectService {
 	 * @return
 	 */
 	public BaseJSON selectDefectDetail(Integer defectCode);
+	
+	/**
+	 * 修改缺陷信息
+	 * @param defectCode
+	 * @param defectName
+	 * @param defectStatus
+	 * @param defectSeverity
+	 * @param defectPriority
+	 * @param processingStatus
+	 * @param defectSolution
+	 * @param defectRemarks
+	 * @param defectImg
+	 * @param updateBy
+	 * @return
+	 */
+	public String updateDefectDetail(Integer defectCode, String defectName, Integer defectStatus,
+									 Integer defectSeverity, Integer defectPriority, Integer processingStatus, Integer defectSolution,
+									 String defectRemarks, String defectImg, Integer updateBy);
 
+	
 }

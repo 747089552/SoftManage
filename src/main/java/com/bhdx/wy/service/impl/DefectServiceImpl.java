@@ -84,5 +84,34 @@ public class DefectServiceImpl implements DefectService{
 		return baseJSON;
 	}
 	
+	/**
+	 * 修改缺陷信息
+	 */
+	@Override
+	public String updateDefectDetail(Integer defectCode, String defectName, Integer defectStatus,
+			Integer defectSeverity, Integer defectPriority, Integer processingStatus, Integer defectSolution,
+			String defectRemarks, String defectImg, Integer updateBy) {
+		Date updateTime = new Date();
+		int updateDefectNum = defectMapper.updateDefectDetail(defectCode,defectName,defectStatus,defectSeverity,
+															  defectPriority,processingStatus,defectSolution,defectRemarks,defectImg,updateBy,updateTime);
+		if(updateDefectNum>1) {
+	
+			return "修改成功";
+		}else {
+			return "修改失败";
+		}
+	}
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+

@@ -104,23 +104,28 @@ public class defectController {
 	
 	/**
 	 * 通过缺陷编码修改bug信息
-	 * 
-	 * 未完成，请接着添加！！！！！！！！！！！！！！
 	 */
 	@CrossOrigin
 	@ApiOperation("查询bug列表")
 	@ApiImplicitParams({
-		@ApiImplicitParam(paramType = "query", name = "defectCode", dataType = "Integer", required = false, value = "缺陷编码", defaultValue = ""),
+		@ApiImplicitParam(paramType = "query", name = "defectCode", dataType = "Integer", required = true, value = "缺陷编码", defaultValue = ""),
+		@ApiImplicitParam(paramType = "query", name = "defectName", dataType = "String", required = false, value = "缺陷名称", defaultValue = ""),
 		@ApiImplicitParam(paramType = "query", name = "defectStatus", dataType = "Integer", required = false, value = "缺陷状态", defaultValue = ""), 
 		@ApiImplicitParam(paramType = "query", name = "defectSeverity", dataType = "Integer", required = false, value = "严重程度", defaultValue = ""), 
 		@ApiImplicitParam(paramType = "query", name = "defectPriority", dataType = "Integer", required = false, value = "优先级", defaultValue = ""),  
 		@ApiImplicitParam(paramType = "query", name = "processingStatus", dataType = "Integer", required = false, value = "处理状态", defaultValue = ""), 
 		@ApiImplicitParam(paramType = "query", name = "defectSolution", dataType = "Integer", required = false, value = "解决方案", defaultValue = ""), 
 		@ApiImplicitParam(paramType = "query", name = "defectRemarks", dataType = "String", required = false, value = "缺陷说明", defaultValue = ""),  
-		@ApiImplicitParam(paramType = "query", name = "defectImg", dataType = "String", required = false, value = "缺陷图片", defaultValue = ""),     
+		@ApiImplicitParam(paramType = "query", name = "defectImg", dataType = "String", required = false, value = "缺陷图片", defaultValue = ""),
+		@ApiImplicitParam(paramType = "query", name = "updateBy", dataType = "Integer", required = true, value = "修改人", defaultValue = ""),          
 	})
-	public String updateDefectDetail() {
-		return "";
+	public String updateDefectDetail(Integer defectCode,String defectName,Integer defectStatus,
+								Integer defectSeverity,Integer defectPriority,Integer processingStatus,
+								Integer defectSolution,String defectRemarks,String defectImg,Integer updateBy) {
+		
+		return defectService.updateDefectDetail(defectCode,defectName,defectStatus,
+												defectSeverity,defectPriority,processingStatus,
+												defectSolution,defectRemarks,defectImg,updateBy);
 	}
 
 }
