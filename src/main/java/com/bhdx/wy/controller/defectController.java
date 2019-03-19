@@ -106,7 +106,7 @@ public class defectController {
 	 * 通过缺陷编码修改bug信息
 	 */
 	@CrossOrigin
-	@ApiOperation("查询bug列表")
+	@ApiOperation("通过缺陷编码修改bug信息")
 	@ApiImplicitParams({
 		@ApiImplicitParam(paramType = "query", name = "defectCode", dataType = "Integer", required = true, value = "缺陷编码", defaultValue = ""),
 		@ApiImplicitParam(paramType = "query", name = "defectName", dataType = "String", required = false, value = "缺陷名称", defaultValue = ""),
@@ -119,6 +119,7 @@ public class defectController {
 		@ApiImplicitParam(paramType = "query", name = "defectImg", dataType = "String", required = false, value = "缺陷图片", defaultValue = ""),
 		@ApiImplicitParam(paramType = "query", name = "updateBy", dataType = "Integer", required = true, value = "修改人", defaultValue = ""),          
 	})
+	@RequestMapping(value = "/updateDefectDetail", method = RequestMethod.GET)
 	public String updateDefectDetail(Integer defectCode,String defectName,Integer defectStatus,
 								Integer defectSeverity,Integer defectPriority,Integer processingStatus,
 								Integer defectSolution,String defectRemarks,String defectImg,Integer updateBy) {

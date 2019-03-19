@@ -123,23 +123,40 @@
 				and d.defect_code =  #{defectCode}
 	</select> 
 	
-	
 		
-	<!-- 修改缺陷  -->
+	<!-- 修改缺陷     -->
 	<update id="updateDefectDetail">
-	UPDATE project set 
-	<if test="projectName != null and projectName != ''">
-		 project_name =  #{projectName},
-	</if>
-	<if test="remarks != null and remarks != '' ">
-		 	remarks= #{remarks},
-	</if>
-	<if test="projectStatus != null and projectStatus != '' ">
-		 		project_status= #{projectStatus},
-	</if>
-		 update_time= #{updateTime} 
-	where project_code = #{projectCode} 
+	UPDATE defect SET 
+		<if test="defectName != null and defectName != ''">
+			defect_name = #{defectName},
+		</if>
+		<if test="defectStatus != null and defectStatus != ''">
+			defect_status = #{defectStatus},
+		</if>		 
+		<if test="defectSeverity != null and defectSeverity != ''">
+			defect_severity = #{defectSeverity},
+		</if>		 
+		<if test="defectPriority != null and defectPriority != ''">
+			 defectPriority = #{defectPriority},
+		</if>		
+		<if test="processingStatus != null and processingStatus != ''">
+			 processing_status = #{processingStatus},
+		</if>	
+		<if test="defectSolution != null and defectSolution != ''">
+			 defect_solution = #{defectSolution},
+		</if>
+		<if test="defectRemarks != null and defectRemarks != ''">
+			 defect_remarks = #{defectRemarks},
+		</if>	
+		<if test="defectImg != null and defectImg != ''">
+			 defect_img = #{defectImg},
+		</if>		
+			 update_by = #{updateBy},
+			 update_time = #{updateTime}
+	WHERE 
+		defect_code = #{defectCode};
 	</update>
+	
 	
 	
 	

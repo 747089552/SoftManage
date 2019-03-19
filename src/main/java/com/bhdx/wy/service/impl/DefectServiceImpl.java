@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.bhdx.wy.domain.dto.DefectDTO;
 import com.bhdx.wy.domain.json.BaseJSON;
 import com.bhdx.wy.domain.json.PageJSON;
+import com.bhdx.wy.domain.po.DefectPO;
 import com.bhdx.wy.mapper.DefectMapper;
 import com.bhdx.wy.service.DefectService;
 import com.github.pagehelper.Page;
@@ -92,10 +93,11 @@ public class DefectServiceImpl implements DefectService{
 			Integer defectSeverity, Integer defectPriority, Integer processingStatus, Integer defectSolution,
 			String defectRemarks, String defectImg, Integer updateBy) {
 		Date updateTime = new Date();
-		int updateDefectNum = defectMapper.updateDefectDetail(defectCode,defectName,defectStatus,defectSeverity,
-															  defectPriority,processingStatus,defectSolution,defectRemarks,defectImg,updateBy,updateTime);
-		if(updateDefectNum>1) {
-	
+		List<DefectPO> updateDefectNum =  defectMapper.selectDefectCode(defectCode);
+		System.out.println(updateDefectNum);
+		if(updateDefectNum.size()>0) {
+			defectMapper.updateDefectDetail(defectCode,defectName,defectStatus,defectSeverity,
+					  defectPriority,processingStatus,defectSolution,defectRemarks,defectImg,updateBy,updateTime);
 			return "修改成功";
 		}else {
 			return "修改失败";
